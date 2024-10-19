@@ -53,15 +53,19 @@ class _CustomListTitle extends StatelessWidget {
       title: Text(menuItem.title),
       subtitle: Text(menuItem.subTitle),
       onTap: () {
+        //? flutter native route
         // Navigator.pushNamed(context, menuItem.link);
+        //? Flutter native route
         /*Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => const ButtonsScreen(),
           ),
         );*/
-        context.push(menuItem.link);
 
+        //? go route name navigation
         //context.pushNamed(CardsScreen.name)
+        //? go route navigation
+        context.push(menuItem.link);
       },
     );
   }
