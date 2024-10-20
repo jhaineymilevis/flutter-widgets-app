@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -57,6 +58,8 @@ class _InfiniteScrollScrenState extends State<InfiniteScrollScren> {
 
     if (!isMounted) return;
     setState(() {});
+
+    //todo mover scroll
   }
 
   @override
@@ -64,11 +67,12 @@ class _InfiniteScrollScrenState extends State<InfiniteScrollScren> {
     return Scaffold(
       backgroundColor: Colors.black,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.pop();
-        },
-        child: const Icon(Icons.arrow_back_ios_new_outlined),
-      ),
+          onPressed: () {
+            context.pop();
+          },
+          child: isLoading
+              ? FadeIn(child: const CircularProgressIndicator())
+              : FadeIn(child: const Icon(Icons.arrow_back_ios_new_outlined))),
       body: MediaQuery.removePadding(
         context: context,
         removeTop: true,
