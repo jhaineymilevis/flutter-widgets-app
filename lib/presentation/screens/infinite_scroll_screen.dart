@@ -62,6 +62,19 @@ class _InfiniteScrollScrenState extends State<InfiniteScrollScren> {
     //todo mover scroll
   }
 
+  Future<void> onRefresh() async {
+    isLoading = true;
+    await Future.delayed(const Duration(seconds: 1)); // Simulate delay
+    if (!isMounted) return;
+    final lastId = imagesIds.last;
+    isLoading = false;
+    imagesIds.clear();
+    imagesIds.add(lastId + 1);
+    addImages();
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,18 +90,23 @@ class _InfiniteScrollScrenState extends State<InfiniteScrollScren> {
         context: context,
         removeTop: true,
         removeBottom: true,
-        child: ListView.builder(
-            controller: scrollController,
-            itemCount: imagesIds.length,
-            itemBuilder: (context, index) {
-              return FadeInImage(
-                  fit: BoxFit.cover,
-                  placeholder: const AssetImage('assets/jar-loading.gif'),
-                  width: double.infinity,
-                  height: 300,
-                  image: NetworkImage(
-                      'https://picsum.photos/id/${imagesIds[index]}/500/300'));
-            }),
+        child: RefreshIndicator(
+          edgeOffset: 10,
+          strokeWidth: 2,
+          onRefresh: onRefresh,
+          child: ListView.builder(
+              controller: scrollController,
+              itemCount: imagesIds.length,
+              itemBuilder: (context, index) {
+                return FadeInImage(
+                    fit: BoxFit.cover,
+                    placeholder: const AssetImage('assets/jar-loading.gif'),
+                    width: double.infinity,
+                    height: 300,
+                    image: NetworkImage(
+                        'https://picsum.photos/id/${imagesIds[index]}/500/300'));
+              }),
+        ),
       ),
     );
   }
