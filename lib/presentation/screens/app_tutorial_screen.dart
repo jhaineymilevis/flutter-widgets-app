@@ -6,6 +6,17 @@ class AppTutorialScren extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: _TutorialView(),
+    );
+  }
+}
+
+class _TutorialView extends StatelessWidget {
+  const _TutorialView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
