@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,33 +32,79 @@ class AppTutorialScren extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          const _TutorialView(),
-          Positioned(
-              top: 50,
-              right: 20,
-              child: TextButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  child: const Text('Salir')))
-        ],
-      ),
+      body: _TutorialView(),
     );
   }
 }
 
-class _TutorialView extends StatelessWidget {
+class _TutorialView extends StatefulWidget {
   const _TutorialView();
 
   @override
+  State<_TutorialView> createState() => _TutorialViewState();
+}
+
+class _TutorialViewState extends State<_TutorialView> {
+  final pageViewController = PageController();
+  bool endReach = false;
+
+  @override
   Widget build(BuildContext context) {
-    return PageView(
-      physics: const BouncingScrollPhysics(),
-      children: slides.map((slide) => _Slide(slide)).toList(),
+    return Stack(
+      children: [
+        PageView(
+          controller: pageViewController,
+          physics: const BouncingScrollPhysics(),
+          children: slides.map((slide) => _Slide(slide)).toList(),
+        ),
+        Positioned(
+            top: 50,
+            right: 20,
+            child: TextButton(
+                onPressed: () {
+                  context.pop();
+                },
+                child: const Text('Salir'))),
+        endReach
+            ? Positioned(
+                bottom: 30,
+                right: 30,
+                child: FadeInRight(
+                  from: 15,
+                  delay: const Duration(seconds: 1),
+                  child: FilledButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: const Text('Comenzar')),
+                ))
+            : const SizedBox()
+      ],
+    );
+  }
+
+  @override
+  void dispose() {
+    pageViewController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    pageViewController.addListener(
+      () {
+        final page = pageViewController.page ?? 0;
+
+        if (!endReach && page >= (slides.length - 1)) {
+          setState(() {
+            endReach = true;
+          });
+        }
+      },
     );
   }
 }
