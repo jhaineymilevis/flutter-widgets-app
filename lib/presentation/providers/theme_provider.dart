@@ -1,5 +1,11 @@
+import 'package:flutter_application_1/config/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final isDarkModeProvider = StateProvider<bool>(
   (ref) => false,
+);
+
+//state inmutable
+final colorListProvider = Provider(
+  (ref) => colorList,
 );

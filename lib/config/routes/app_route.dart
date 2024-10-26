@@ -3,6 +3,7 @@ import 'package:flutter_application_1/presentation/screens/progress_screen.dart'
 import 'package:go_router/go_router.dart';
 
 import '../../presentation/screens/screens.dart';
+import '../../presentation/screens/theme_changer_screen.dart';
 
 final appRouter = GoRouter(initialLocation: '/', routes: [
   GoRoute(
@@ -45,5 +46,10 @@ final appRouter = GoRouter(initialLocation: '/', routes: [
   GoRoute(
       path: '/counter',
       name: CounterScreen.name,
-      builder: (context, state) => const CounterScreen())
+      builder: (context, state) => const CounterScreen()),
+  GoRoute(
+    path: '/theme-changer',
+    name: ThemeChangerScreen.name,
+    builder: (context, state) => const ThemeChangerScreen(),
+  )
 ]);
