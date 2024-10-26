@@ -10,15 +10,13 @@ class UiControllScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Ui Controll Screen'),
       ),
-      body: _UiControllView(),
+      body: const _UiControllView(),
     );
   }
 }
 
 class _UiControllView extends StatefulWidget {
-  const _UiControllView({
-    super.key,
-  });
+  const _UiControllView();
 
   @override
   State<_UiControllView> createState() => _UiControllViewState();

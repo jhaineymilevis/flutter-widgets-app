@@ -17,7 +17,7 @@ class CardsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Cards Screen')),
-      body: _CardsView(),
+      body: const _CardsView(),
     );
   }
 }

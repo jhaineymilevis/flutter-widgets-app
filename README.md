@@ -1,3 +1,3 @@
-# flutter-widgets-app
+# flutter_application_1
 
-Practica flutter creacion de una app usandoi diferentes widgets
+A new Flutter project.

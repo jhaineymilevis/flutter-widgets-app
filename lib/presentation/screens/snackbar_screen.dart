@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/presentation/screens/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class SnackbarScreen extends StatelessWidget {
@@ -22,7 +21,7 @@ class SnackbarScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Snackbar Example'),
       ),
-      body: _SnackBarView(),
+      body: const _SnackBarView(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => showCustomSnackbar(context),
         icon: const Icon(Icons.remove_red_eye_outlined),
@@ -35,9 +34,7 @@ class SnackbarScreen extends StatelessWidget {
 }
 
 class _SnackBarView extends StatelessWidget {
-  const _SnackBarView({
-    super.key,
-  });
+  const _SnackBarView();
 
   void openDialog(BuildContext context) {
     showDialog(

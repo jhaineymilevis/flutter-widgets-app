@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/config/menu/menu_item.dart';
+import 'package:flutter_application_1/presentation/widgets/side_menu.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,10 +10,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Flutter + Material 3"),
-        ),
-        body: const _HomeView());
+      appBar: AppBar(
+        title: const Text("Flutter + Material 3"),
+      ),
+      body: const _HomeView(),
+      drawer: const SideMenu(),
+    );
   }
 }
 

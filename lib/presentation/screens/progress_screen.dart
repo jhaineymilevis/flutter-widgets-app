@@ -27,18 +27,18 @@ class _ProgressView extends StatelessWidget {
             height: 20,
           ),
           Text('Circular progress indicator'),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           CircularProgressIndicator(
             strokeWidth: 2,
             backgroundColor: Colors.black45,
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Text('Circular indicator controlado'),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           _ControlledProgressIndicator()
