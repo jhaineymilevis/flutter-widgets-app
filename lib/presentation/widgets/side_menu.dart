@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/config/menu/menu_item.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({super.key});
@@ -25,12 +26,26 @@ class _SideMenuState extends State<SideMenu> {
         children: [
           Padding(
               padding: EdgeInsets.fromLTRB(28, hasNotch ? 10 : 20, 16, 10),
-              child: Text("Opciones principales")),
-          const NavigationDrawerDestination(
-              icon: Icon(Icons.add), label: Text("Home screen")),
-          const NavigationDrawerDestination(
-              icon: Icon(Icons.add_shopping_cart_rounded),
-              label: Text("Otra pantalla")),
+              child: const Text("Opciones principales")),
+          ...appMenuItems.sublist(0, 3).map(
+                (e) => NavigationDrawerDestination(
+                    icon: Icon(e.icon), label: Text(e.title)),
+              ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(28, 16, 16, 10),
+            child: Divider(),
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(28, hasNotch ? 10 : 20, 16, 10),
+              child: const Text("Opciones secundarias")),
+          ...appMenuItems.sublist(4, 7).map(
+                (e) => NavigationDrawerDestination(
+                    icon: Icon(e.icon), label: Text(e.title)),
+              ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(28, 16, 16, 10),
+            child: Divider(),
+          ),
         ]);
   }
 }
