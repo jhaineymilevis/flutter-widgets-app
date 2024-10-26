@@ -12,3 +12,13 @@ final selectedColorProvider = StateProvider<int>(
 final colorListProvider = Provider(
   (ref) => colorList,
 );
+
+final themeNorifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
+  (ref) => ThemeNotifier(),
+);
+
+//controller or notifier
+class ThemeNotifier extends StateNotifier<AppTheme> {
+  //state == new instance of AppTheme
+  ThemeNotifier() : super(AppTheme());
+}
