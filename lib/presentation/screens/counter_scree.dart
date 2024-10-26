@@ -8,7 +8,7 @@ class CounterScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final clickCounter =
+    final int clickCounter =
         ref.watch(conunterProvider); //watichn counter provider of riverpod
     return Scaffold(
         appBar: AppBar(
@@ -19,7 +19,11 @@ class CounterScreen extends ConsumerWidget {
               style: Theme.of(context).textTheme.titleLarge),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            ref
+                .read(conunterProvider.notifier)
+                .state++; // increment counter using riverpod
+          },
           child: const Icon(Icons.add),
         ));
   }
