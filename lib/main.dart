@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/config/routes/app_route.dart';
+import 'package:flutter_application_1/presentation/providers/theme_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'config/app_theme.dart';
@@ -8,16 +9,19 @@ void main() {
   runApp(const ProviderScope(child: MainApp()));
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final isDarkMode = ref.watch(isDarkModeProvider);
+    final selectedColor = ref.watch(selectedColorProvider);
     return MaterialApp.router(
       title: 'Flutter widgets',
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(selectedColor: 6).getTheme(),
+      theme: AppTheme(selectedColor: selectedColor, isDarkMode: isDarkMode)
+          .getTheme(),
       /*home: const HomeScreen(),
      routes: {
         '/buttons': (context) => const ButtonsScreen(),

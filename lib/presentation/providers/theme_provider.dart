@@ -4,6 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final isDarkModeProvider = StateProvider<bool>(
   (ref) => false,
 );
+final selectedColorProvider = StateProvider<int>(
+  (ref) => 0,
+);
 
 //state inmutable
 final colorListProvider = Provider(
