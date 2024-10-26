@@ -8,7 +8,9 @@ class ThemeChangerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDarkMode = ref.watch(isDarkModeProvider);
+    //final isDarkMode = ref.watch(isDarkModeProvider);
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Change theme"),
@@ -16,9 +18,8 @@ class ThemeChangerScreen extends ConsumerWidget {
           IconButton(
             onPressed: () {
               //ref.read(conunterProvider.notifier).reset(); // reset counter using riverpod
-              ref
-                  .read(isDarkModeProvider.notifier)
-                  .update((state) => !state); // another way to reset state
+              //ref.read(isDarkModeProvider.notifier).update((state) => !state); // another way to reset state
+              ref.read(themeNotifierProvider.notifier).togleDarkMode();
             },
             icon: Icon(isDarkMode
                 ? Icons.light_mode_outlined
@@ -32,15 +33,13 @@ class ThemeChangerScreen extends ConsumerWidget {
 }
 
 class _TheneChangerVIew extends ConsumerWidget {
-  const _TheneChangerVIew({
-    super.key,
-  });
+  const _TheneChangerVIew();
 
   @override
   Widget build(BuildContext context, ref) {
     final List<Color> colors = ref.watch(colorListProvider);
-    final selectedColor = ref.watch(selectedColorProvider);
-
+    //final selectedColor = ref.watch(selectedColorProvider);
+    final int selectedColor = ref.watch(themeNotifierProvider).selectedColor;
     return ListView.builder(
       itemCount: colors.length,
       itemBuilder: (context, index) {
@@ -55,7 +54,8 @@ class _TheneChangerVIew extends ConsumerWidget {
           value: index,
           groupValue: selectedColor,
           onChanged: (value) {
-            ref.read(selectedColorProvider.notifier).state = index;
+            //ref.read(selectedColorProvider.notifier).state = index;
+            ref.watch(themeNotifierProvider.notifier).setColor(index);
           },
         );
       },
